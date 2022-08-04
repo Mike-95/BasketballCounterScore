@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.CounterFragment">
+
+    <TextView
+        android:id="@+id/tv_date_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="August 18th Playoff"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_teamA"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="34dp"
+        android:gravity="center_horizontal"
+        android:text="Team A"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/tv_date_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date_name" />
+
+    <TextView
+        android:id="@+id/tv_TeamA_points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="0"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_teamA"
+        app:layout_constraintStart_toStartOf="@+id/tv_teamA"
+        app:layout_constraintTop_toBottomOf="@+id/tv_teamA" />
+
+    <Button
+        android:id="@+id/btnThreePoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="+3 Points"
+        app:layout_constraintEnd_toEndOf="@+id/tv_TeamA_points"
+        app:layout_constraintStart_toStartOf="@+id/tv_TeamA_points"
+        app:layout_constraintTop_toBottomOf="@+id/tv_TeamA_points" />
+
+    <Button
+        android:id="@+id/btnTwoPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="+2 Points"
+        app:layout_constraintEnd_toEndOf="@+id/btnThreePoints"
+        app:layout_constraintStart_toStartOf="@+id/btnThreePoints"
+        app:layout_constraintTop_toBottomOf="@+id/btnThreePoints" />
+
+    <Button
+        android:id="@+id/btnfreeThrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Free Throw"
+        app:layout_constraintEnd_toEndOf="@+id/btnTwoPoints"
+        app:layout_constraintStart_toStartOf="@+id/btnTwoPoints"
+        app:layout_constraintTop_toBottomOf="@+id/btnTwoPoints" />
+
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="3dp"
+        android:layout_height="0dp"
+        android:background="#CEDBE3"
+        app:layout_constraintBottom_toBottomOf="@id/btnfreeThrow"
+        app:layout_constraintEnd_toStartOf="@+id/btnfreeThrowB"
+        app:layout_constraintStart_toEndOf="@+id/btnfreeThrow"
+        app:layout_constraintTop_toTopOf="@+id/tv_teamA"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_teamB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="48dp"
+        android:text="Team B"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tv_date_name"
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date_name" />
+
+    <TextView
+        android:id="@+id/tv_TeamB_points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="0"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_teamB"
+        app:layout_constraintStart_toStartOf="@+id/tv_teamB"
+        app:layout_constraintTop_toBottomOf="@+id/tv_teamB" />
+
+    <Button
+        android:id="@+id/btnThreePointsB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="+3 Points"
+        app:layout_constraintEnd_toEndOf="@+id/tv_TeamB_points"
+        app:layout_constraintStart_toStartOf="@+id/tv_TeamB_points"
+        app:layout_constraintTop_toBottomOf="@+id/tv_TeamB_points" />
+
+    <Button
+        android:id="@+id/btnTwoPointsB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="+2 Points"
+        app:layout_constraintEnd_toEndOf="@+id/btnThreePointsB"
+        app:layout_constraintStart_toStartOf="@+id/btnThreePointsB"
+        app:layout_constraintTop_toBottomOf="@+id/btnThreePointsB" />
+
+    <Button
+        android:id="@+id/btnfreeThrowB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Free Throw"
+        app:layout_constraintEnd_toEndOf="@+id/btnTwoPointsB"
+        app:layout_constraintStart_toStartOf="@+id/btnTwoPointsB"
+        app:layout_constraintTop_toBottomOf="@+id/btnTwoPointsB" />
+
+    <Button
+        android:id="@+id/btnReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:text="Reset"
+        app:layout_constraintEnd_toEndOf="@+id/btnfreeThrowB"
+        app:layout_constraintStart_toStartOf="@+id/btnfreeThrow"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+</androidx.constraintlayout.widget.ConstraintLayout>
