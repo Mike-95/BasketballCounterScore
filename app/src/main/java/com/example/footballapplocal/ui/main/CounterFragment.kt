@@ -15,7 +15,8 @@ const val THREE_POINTS = 3
 class CounterFragment : Fragment() {
 
     private lateinit var binding: FragmentCounterBinding
-    var points = 0
+    var pointsA = 0
+    var pointsB = 0
 
 
     override fun onCreateView(
@@ -23,23 +24,61 @@ class CounterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-         binding = FragmentCounterBinding.inflate(inflater, container, false)
+        binding = FragmentCounterBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       binding.btnThreePoints.setOnClickListener {
-           points+=3
-           binding.tvTeamAPoints.text = points.toString()
+        //3 points A
+        binding.btnThreePoints.setOnClickListener {
+            pointsA += 3
+            binding.tvTeamAPoints.text = pointsA.toString()
+        }
 
-       }
+        //3 points B
+        binding.btnThreePointsB.setOnClickListener {
+            pointsB += 3
+            binding.tvTeamBPoints.text = pointsB.toString()
+        }
 
+        //2 points A
+        binding.btnTwoPoints.setOnClickListener {
+            pointsA += 2
+            binding.tvTeamAPoints.text = pointsA.toString()
+        }
+
+        //2 points B
+        binding.btnTwoPointsB.setOnClickListener {
+            pointsB += 2
+            binding.tvTeamBPoints.text = pointsB.toString()
+        }
+
+        //Free Throw 1 point A
+        binding.btnfreeThrow.setOnClickListener {
+            pointsA += 1
+            binding.tvTeamAPoints.text = pointsA.toString()
+        }
+
+        //Free Throw 1 point B
+        binding.btnfreeThrowB.setOnClickListener {
+            pointsA += 1
+            binding.tvTeamAPoints.text = pointsA.toString()
+        }
+
+        binding.btnReset.setOnClickListener {
+            pointsA = 0
+            pointsB = 0
+            binding.tvTeamAPoints.text = 0.toString()
+            binding.tvTeamBPoints.text = 0.toString()
         }
 
 
     }
+
+
+}
 
 
 
