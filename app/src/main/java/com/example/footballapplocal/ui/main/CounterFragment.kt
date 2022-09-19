@@ -63,8 +63,8 @@ class CounterFragment : Fragment() {
 
         //Free Throw 1 point B
         binding.btnfreeThrowB.setOnClickListener {
-            pointsA += 1
-            binding.tvTeamAPoints.text = pointsA.toString()
+            pointsB += 1
+            binding.tvTeamBPoints.text = pointsB.toString()
         }
 
         binding.btnReset.setOnClickListener {
