@@ -2,21 +2,23 @@ package com.example.footballapplocal.ui.main
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.example.footballapplocal.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.footballapplocal.MyViewModel
 import com.example.footballapplocal.databinding.FragmentCounterBinding
+import kotlin.math.log
 
 const val THREE_POINTS = 3
 
 class CounterFragment : Fragment() {
 
     private lateinit var binding: FragmentCounterBinding
-    var pointsA = 0
-    var pointsB = 0
+
+
+    private val mViewModel: MyViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -25,7 +27,10 @@ class CounterFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentCounterBinding.inflate(inflater, container, false)
+
         return binding.root
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,45 +38,38 @@ class CounterFragment : Fragment() {
 
         //3 points A
         binding.btnThreePoints.setOnClickListener {
-            pointsA += 3
-            binding.tvTeamAPoints.text = pointsA.toString()
+            binding.tvTeamAPoints.text = mViewModel.addThreePointsA().toString()
+
         }
 
         //3 points B
         binding.btnThreePointsB.setOnClickListener {
-            pointsB += 3
-            binding.tvTeamBPoints.text = pointsB.toString()
+            binding.tvTeamBPoints.text = mViewModel.addThreePointsB().toString()
         }
 
         //2 points A
         binding.btnTwoPoints.setOnClickListener {
-            pointsA += 2
-            binding.tvTeamAPoints.text = pointsA.toString()
+            binding.tvTeamAPoints.text = mViewModel.addTwoPointsA().toString()
         }
 
         //2 points B
         binding.btnTwoPointsB.setOnClickListener {
-            pointsB += 2
-            binding.tvTeamBPoints.text = pointsB.toString()
+            binding.tvTeamBPoints.text = mViewModel.addTwoPointsB().toString()
         }
 
         //Free Throw 1 point A
         binding.btnfreeThrow.setOnClickListener {
-            pointsA += 1
-            binding.tvTeamAPoints.text = pointsA.toString()
+            binding.tvTeamAPoints.text = mViewModel.addFreeThrowA().toString()
         }
 
         //Free Throw 1 point B
         binding.btnfreeThrowB.setOnClickListener {
-            pointsB += 1
-            binding.tvTeamBPoints.text = pointsB.toString()
+            binding.tvTeamBPoints.text = mViewModel.addFreeThrowB().toString()
         }
 
         binding.btnReset.setOnClickListener {
-            pointsA = 0
-            pointsB = 0
-            binding.tvTeamAPoints.text = 0.toString()
-            binding.tvTeamBPoints.text = 0.toString()
+            binding.tvTeamAPoints.text = mViewModel.resetPoints().toString()
+            binding.tvTeamBPoints.text = mViewModel.resetPoints().toString()
         }
 
 
