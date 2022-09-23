@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.footballapplocal.MyViewModel
 import com.example.footballapplocal.databinding.FragmentCounterBinding
 import kotlin.math.log
@@ -18,7 +21,7 @@ class CounterFragment : Fragment() {
     private lateinit var binding: FragmentCounterBinding
 
 
-    private val mViewModel: MyViewModel by viewModels()
+    lateinit var mViewModel: MyViewModel
 
 
     override fun onCreateView(
@@ -28,52 +31,66 @@ class CounterFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentCounterBinding.inflate(inflater, container, false)
 
+        mViewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+
+        //observe currentNumberAThreePoints
+        mViewModel.currentNumberAThreePoints.observe(viewLifecycleOwner, Observer {
+            binding.tvTeamAPoints.text = it.toString()
+        })
+        //observe currentNumberBThreePoints
+        mViewModel.currentNumberBThreePoints.observe(viewLifecycleOwner, Observer {
+            binding.tvTeamBPoints.text = it.toString()
+        })
+        //observe currentNumberATwoPoints
+        mViewModel.currentNumberATwoPoints.observe(viewLifecycleOwner, Observer {
+            binding.tvTeamAPoints.text = it.toString()
+        })
+        //observe currentNumberBTwoPoints
+        mViewModel.currentNumberBTwoPoints.observe(viewLifecycleOwner, Observer {
+            binding.tvTeamBPoints.text = it.toString()
+        })
+        //observe currentNumberAOnePoint
+        mViewModel.currentNumberAOnePoint.observe(viewLifecycleOwner, Observer {
+            binding.tvTeamAPoints.text = it.toString()
+        })
+        //observe currentNumberBOnePoint
+        mViewModel.currentNumberBOnePoint.observe(viewLifecycleOwner, Observer {
+            binding.tvTeamBPoints.text = it.toString()
+        })
+        mViewModel.resetAllPoints().toString()
+
+        incrementPoints()
         return binding.root
 
+    }
+
+    private fun incrementPoints() {
+        binding.apply {
+            btnThreePoints.setOnClickListener {
+                mViewModel.currentNumberAThreePoints.value = ++mViewModel.threePointsA
+            }
+            btnThreePointsB.setOnClickListener {
+                mViewModel.currentNumberBThreePoints.value = ++mViewModel.threePointsB
+            }
+            btnTwoPoints.setOnClickListener {
+                mViewModel.currentNumberATwoPoints.value = ++mViewModel.threePointsA
+            }
+            btnTwoPointsB.setOnClickListener {
+                mViewModel.currentNumberBTwoPoints.value = ++mViewModel.threePointsB
+            }
+            btnfreeThrow.setOnClickListener {
+                mViewModel.currentNumberAOnePoint.value = ++mViewModel.threePointsA
+            }
+            btnfreeThrowB.setOnClickListener {
+                mViewModel.currentNumberBOnePoint.value = ++mViewModel.threePointsB
+            }
+            btnReset.setOnClickListener {
+                mViewModel.resetAllPoints()
+            }
+        }
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        //3 points A
-        binding.btnThreePoints.setOnClickListener {
-            binding.tvTeamAPoints.text = mViewModel.addThreePointsA().toString()
-
-        }
-
-        //3 points B
-        binding.btnThreePointsB.setOnClickListener {
-            binding.tvTeamBPoints.text = mViewModel.addThreePointsB().toString()
-        }
-
-        //2 points A
-        binding.btnTwoPoints.setOnClickListener {
-            binding.tvTeamAPoints.text = mViewModel.addTwoPointsA().toString()
-        }
-
-        //2 points B
-        binding.btnTwoPointsB.setOnClickListener {
-            binding.tvTeamBPoints.text = mViewModel.addTwoPointsB().toString()
-        }
-
-        //Free Throw 1 point A
-        binding.btnfreeThrow.setOnClickListener {
-            binding.tvTeamAPoints.text = mViewModel.addFreeThrowA().toString()
-        }
-
-        //Free Throw 1 point B
-        binding.btnfreeThrowB.setOnClickListener {
-            binding.tvTeamBPoints.text = mViewModel.addFreeThrowB().toString()
-        }
-
-        binding.btnReset.setOnClickListener {
-            binding.tvTeamAPoints.text = mViewModel.resetPoints().toString()
-            binding.tvTeamBPoints.text = mViewModel.resetPoints().toString()
-        }
-
-
-    }
 
 
 }
