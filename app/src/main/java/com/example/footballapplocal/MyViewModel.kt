@@ -1,11 +1,26 @@
 package com.example.footballapplocal
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
+const val THREE_POINTS = 3
 class MyViewModel : androidx.lifecycle.ViewModel() {
 
-    var threePointsA = 0
-    var threePointsB = 0
+    var threePointsAA = 0
+    var threePointsBB = 0
+
+    private val _threePointsA = MutableLiveData(0)
+    val threePointsA: LiveData<Int>
+    get() = _threePointsA
+
+    private val _threePointsB = MutableLiveData(0)
+    val threePointsB: LiveData<Int>
+    get() = _threePointsB
+
+
+     fun increasePoints(){
+        _threePointsA.value = (_threePointsA.value)?.plus(THREE_POINTS)
+    }
 
 
 
@@ -31,8 +46,8 @@ class MyViewModel : androidx.lifecycle.ViewModel() {
     }
 
     fun resetAllPoints(){
-        threePointsA = 0
-        threePointsB = 0
+        threePointsAA = 0
+        threePointsBB = 0
     }
 
 

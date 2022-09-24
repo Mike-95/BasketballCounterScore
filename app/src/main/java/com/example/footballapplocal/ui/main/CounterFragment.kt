@@ -6,13 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.footballapplocal.MyViewModel
 import com.example.footballapplocal.databinding.FragmentCounterBinding
-import kotlin.math.log
 
 const val THREE_POINTS = 3
 
@@ -37,6 +34,7 @@ class CounterFragment : Fragment() {
         mViewModel.currentNumberAThreePoints.observe(viewLifecycleOwner, Observer {
             binding.tvTeamAPoints.text = it.toString()
         })
+
         //observe currentNumberBThreePoints
         mViewModel.currentNumberBThreePoints.observe(viewLifecycleOwner, Observer {
             binding.tvTeamBPoints.text = it.toString()
@@ -57,32 +55,40 @@ class CounterFragment : Fragment() {
         mViewModel.currentNumberBOnePoint.observe(viewLifecycleOwner, Observer {
             binding.tvTeamBPoints.text = it.toString()
         })
-        mViewModel.resetAllPoints().toString()
+
+
 
         incrementPoints()
+
+        Log.d("Counter Fragment", "aThreePoints: ${mViewModel.threePointsAA} " +
+            "bThreePoints: ${mViewModel.threePointsBB}"
+        )
+
         return binding.root
 
     }
 
     private fun incrementPoints() {
+
+
         binding.apply {
             btnThreePoints.setOnClickListener {
-                mViewModel.currentNumberAThreePoints.value = ++mViewModel.threePointsA
+                mViewModel.currentNumberAThreePoints.value = ++mViewModel.threePointsAA
             }
             btnThreePointsB.setOnClickListener {
-                mViewModel.currentNumberBThreePoints.value = ++mViewModel.threePointsB
+                mViewModel.currentNumberBThreePoints.value = ++mViewModel.threePointsBB
             }
             btnTwoPoints.setOnClickListener {
-                mViewModel.currentNumberATwoPoints.value = ++mViewModel.threePointsA
+                mViewModel.currentNumberATwoPoints.value = ++mViewModel.threePointsAA
             }
             btnTwoPointsB.setOnClickListener {
-                mViewModel.currentNumberBTwoPoints.value = ++mViewModel.threePointsB
+                mViewModel.currentNumberBTwoPoints.value = ++mViewModel.threePointsBB
             }
             btnfreeThrow.setOnClickListener {
-                mViewModel.currentNumberAOnePoint.value = ++mViewModel.threePointsA
+                mViewModel.currentNumberAOnePoint.value = ++mViewModel.threePointsAA
             }
             btnfreeThrowB.setOnClickListener {
-                mViewModel.currentNumberBOnePoint.value = ++mViewModel.threePointsB
+                mViewModel.currentNumberBOnePoint.value = ++mViewModel.threePointsBB
             }
             btnReset.setOnClickListener {
                 mViewModel.resetAllPoints()
